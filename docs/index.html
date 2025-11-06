@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css?family=roboto:400,500,700">
     <script src='./scripts/prevent-clickjacking.js'></script>
     <!-- ✅ Import map must appear BEFORE the module -->
+    <style id="antiClickjack">
+        body{display:none !important;}
+    </style>
     <script type="importmap">
       {
         "imports": {
