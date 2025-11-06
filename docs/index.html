@@ -390,7 +390,6 @@ svg {
                     ></v-text-field>
                     <h2 v-show="ibanResult">{{ t('Results') }}</h2>
                     <v-list subheader two-line v-if="ibanResult">
-
                       <v-list-item
                         :title="t('Identifier')"
                         :subtitle="ibanResult.id"
@@ -454,6 +453,7 @@ svg {
                       <v-divider inset v-show="ibanResult.result === 'Valid'"></v-divider>
 
                       <v-list-item
+                        v-if="ibanResult.bank"
                         :title="t('Bank name')"
                         :subtitle="lang === 'en' ? translit(ibanResult.bank) : ibanResult.bank"
                       >
