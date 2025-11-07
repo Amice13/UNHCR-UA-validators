@@ -37,10 +37,17 @@ export const checkCreditCard = (creditCard, details, csv) => {
   const id = creditCard
   if (!creditCard) return false
   let match = creditCard.match(creditCardPattern)
-  if (!match) return false
+  if (!match) {
+    if (csv) return 'Invalid,'
+    return { result: 'Invalid' }
+  }
   let entity = Object.assign({}, { id })
   entity = enrichCreditCard(entity)
   entity.result = validateCreditCard(entity)
+  if (csv) return [
+    entity.result ? 'Valid' : 'Invalid',
+    entity.type ?? '',
+  ].join(',')
   if (!details) return entity.result
   entity.result = entity.result ? 'Valid' : 'Invalid'
   return entity

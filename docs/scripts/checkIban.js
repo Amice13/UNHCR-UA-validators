@@ -61,13 +61,16 @@ export const checkIBAN = (iban, details, csv) => {
   const id = iban
   if (!iban) return false
   let match = iban.match(fullPattern)
-  if (!match) return false
+  if (!match) {
+    if (csv) return 'Invalid,,,,,'
+    return { result: 'Invalid' }
+  }
   let entity = Object.assign({}, { id }, match.groups)
   entity = enrich(entity)
   entity.result = validate(entity)
   if (!details) return entity.result
   if (csv) return [
-    entity.result,
+    entity.result ? 'Valid' : 'Invalid',
     entity.alpha2 ?? '',
     entity.country ?? '',
     entity.countryEng ?? '',

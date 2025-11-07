@@ -80,14 +80,15 @@ createApp({
       }
       if (selected.value === 'Credit card') {
         results = entities.map(el => {
-          const res = validateCreditCard(el)
-          return res ? 'Vaild' : 'Invalid'
+          console.log(el)
+          const res = checkCreditCard(el, true, true)
+          return res
         })
       }
       if (selected.value === 'IBAN') {
         results = entities.map(el => {
-          const res = calculateIBAN(el)
-          return res ? 'Vaild' : 'Invalid'
+          const res = checkIBAN(el, true, true)
+          return res
         })
       }
       if (selected.value === 'Transliteration') {
